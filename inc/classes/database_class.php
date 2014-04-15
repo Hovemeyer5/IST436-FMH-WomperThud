@@ -1,9 +1,4 @@
-<?/*
-	Name: Rebecca Hovemeyer
-	Assignment: Project 02
-	Class: IST 430
-*/
-// database
+<?
 	class database
 	{
 		protected $conn; // variable for connection
