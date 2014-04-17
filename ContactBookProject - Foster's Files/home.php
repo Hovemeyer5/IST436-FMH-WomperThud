@@ -51,7 +51,7 @@ function displayDate()
 	else if (d != 2014)
 	{
 		//document.write("Site &#169; McCallister, Hovemeyer, and Foster 2014 - ");
-		x.innerHTML="Site &#169; McCallister, Hovemeyer, and Foster 2014 - " + d.getFullYear();
+		x.innerHTML="Site &#169; Group FMH 2014." + d.getFullYear();
 		//document.write("Site &#169; McCallister, Hovemeyer, and Foster 2014 - ");
 	}
 }
