@@ -71,6 +71,9 @@ echo "<title>$fname $mi $lname</title>";
 echo $fname;
 echo $mi;
 echo $lname;
+
+/*This is a place to display a photo*/
+//echo "<img src=''";
 ?>
 </center></h1>
 <hr>
