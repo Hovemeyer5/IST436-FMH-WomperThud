@@ -9,7 +9,7 @@
 
 	/*this needs to be changed to SQL commands, but for basic usage, this should work*/
 	
-	$file_handle = fopen("sample.txt", "r");
+		$file_handle = fopen("sample.txt", "r");
 	
 		$fname = fgets($file_handle);
 		$mi = fgets($file_handle);
@@ -18,17 +18,11 @@
 		$phoneNumber = fgets($file_handle);
 		$phoneNum2 = fgets($file_handle);
 		$email1 = fgets($file_handle);
-		/*
-   		echo "$dateString <br>";
-   		echo "$oldBalance <br>";
-   		echo "$balanceOld <br>";
-   		echo "$newBalance <br>";
-   		echo "$balanceNew <br>";
-   		echo "<br>";
-		*/
-
+		
+		//This gets the homepage. There isn't one in the sample file. SQL statements will be used
+		//$homePage = fgets($file_handle);
 	
-	$file_handle = fclose($file_handle);
+		$file_handle = fclose($file_handle);
 	
 ?>
 <!DOCTYPE html PUBLIC>
@@ -51,12 +45,12 @@ function displayDate()
 	else if (d != 2014)
 	{
 		//document.write("Site &#169; McCallister, Hovemeyer, and Foster 2014 - ");
-		x.innerHTML="Site &#169; Group FMH 2014." + d.getFullYear();
+		x.innerHTML="Site &#169; Group FMH 2014 - " + d.getFullYear();
 		//document.write("Site &#169; McCallister, Hovemeyer, and Foster 2014 - ");
 	}
 }
 </script>
-<!--This simply dynamically changes the title of the page to the first name-->
+<!--This simply dynamically changes the title of the page to the first, middle initial, and last name-->
 <?php
 echo "<title>$fname $mi $lname</title>";
 ?>
@@ -108,6 +102,12 @@ Email addresses<br/>
 echo "Primary <a href='mailto:SESSION.START.andrewmfoster@gmail.com'> $email1 </a>";
 ?>
 <br/>
+<hr>
+Homepage<br/>
+<?php
+echo /* "<a href='$homePage'> $homePage"*/ "<a href='www.andrewmfoster.com/NerdLair/'> Nerd Lair";
+?>
+
 <hr>
 <span id="copyrighthere">
 <script type="text/javascript">
