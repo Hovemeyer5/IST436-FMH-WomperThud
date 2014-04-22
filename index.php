@@ -1,64 +1,44 @@
-<?
-    require_once('inc/config.php');
-    
-    require_once('inc/header.php');
-      if(!isset($_SESSION['user']) || $_SESSION['user'] == "")
-      {
-        require_once('inc/login.php');
-      }
-      else
-      {
-        echo "<pre>";
-        print_r($contacts->getGroupById(1));
-        echo "</pre>";
-        ?>
-          <div class="header">
+
+		
+	<?
+		require_once('inc/config.php');
+		
+		require_once('inc/header.php');
+		  if(!isset($_SESSION['user']) || $_SESSION['user'] == "")
+		  {
+			require_once('inc/login.php');
+		  }
+		  else
+		  {
+			$PAGINATION = 2;
+			$allContactsGroup = $contacts->getContactsGroups();
+
+	?>
+	
+			<div class="header">
             <ul class="nav nav-pills pull-right">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
               <li><a href="addChoose.php">Add</a></li>
+			  <li><a href="download.php">Download</a></li>
+			  <li><a href="aj.php?action=lgout">Logout</a></li>
             </ul>
-            <h3 class="text-muted">Project name</h3>
-          </div>
-    
-          <div class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-          </div>
-    
-          <div class="row marketing">
-            <div class="col-lg-6">
-              <h4>Subheading</h4>
-              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-    
-            <div class="col-lg-6">
-              <h4>Subheading</h4>
-              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-          </div>
-    
-          <div class="footer">
-            <p>&copy; Company 2014</p>
-          </div>
-        <?
+            <h3 class="text-muted">PHP Application</h3>
+        </div>
+		<?
+			print_r($allContactsGroup);
+			foreach($allContactsGroup as $key=>$value)
+			{
+				echo "<pre>";
+				print_r($value);
+				echo "</pre>";
+				
+				echo "<div><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></div>";	
+			}
       }
-?>
+		?>
       
-<?
-  require_once('inc/footer.php');
-?>
+	<?
+	  require_once('inc/footer.php');
+	?>
+
 
