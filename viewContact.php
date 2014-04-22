@@ -8,45 +8,61 @@
       }
       else
       {
+          $theID = $_GET[id];
+          //this can be removed for when we go live
+          $theID = 1;
+          $something = $contacts->getContactById($theID);
+          $fname = $something[c_fname];
+		$mi = $something[c_mi];
+		$lname = $something[c_lname];
+		//$address = $something[c_address];
+		//$phoneNumber = $something[c_phoneNum];
+		//$email1 = $something[c_email];
+		$image = $something[c_image]
+		
         ?>
+
           <div class="header">
             <ul class="nav nav-pills pull-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-            <h3 class="text-muted">Project name</h3>
+              <li class="active"><a href="index.php">Home</a></li>
+              </ul>
+            <h3 class="text-muted"><?=$fname.$mi.$lname?></h3>
           </div>
-    
-          <div class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-          </div>
-    
-          <div class="row marketing">
-            <div class="col-lg-6">
-              <h4>Subheading</h4>
-              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-    
-            <div class="col-lg-6">
-              <h4>Subheading</h4>
-              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-    
-              <h4>Subheading</h4>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-          </div>
+          <?php
+          //this begins the body output
+          ?>
+          Address:
+            <?php
+                //echo $address;
+            ?>
+            <br/>
+            <hr>
+ <!--the different categories of numbers-->
+Phone numbers<br/>
+<?php
+/*
+Purpose: To check if there is a null secondary number, and if not, display it
+*/
+if ($phoneNum2 == 'null' || $phoneNum2 == "\n")
+{
+	//echo "Primary: $phoneNumber";
+}
+else if ($phoneNum2 != 'null')
+{
+	//echo "<br>";
+	//echo "Phone number [secondary]: $phoneNum2";
+}
+?>
+<hr>
+Email addresses<br/>
+<?php
+/*I don't know if we want to do this or not, but make the emails go open in a mail client?*/
+//echo "Primary <a href='mailto:SESSION.START.andrewmfoster@gmail.com'> $email </a>";
+?>
+          
+          //end of the body
+          ?>
+          
     
           <div class="footer">
             <p>&copy; Company 2014</p>
