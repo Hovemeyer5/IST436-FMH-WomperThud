@@ -17,14 +17,14 @@
             <ul class="nav nav-pills pull-right">
               <li class="active"><a href="index.php">Home</a></li>
             </ul>
-            <h3 class="text-muted"><?=$gname[name]?></h3>
+            <h3 class="text-muted"><?=$gname['g_name']?></h3>
           </div>
     
           <?php
-          echo $gname[name] . "<br>";
-          foreach($gname[member] as $member)
+          echo $gname['g_name'] . "<br>";
+          foreach($gname['members'] as $member)
           {
-            echo member[name]. "<br>";
+            echo $member[c_name]. "<br>";
           }
           
           
