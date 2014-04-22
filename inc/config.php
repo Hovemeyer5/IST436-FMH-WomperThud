@@ -14,4 +14,5 @@
 	    }
 	    
 	    $db = new database;
+	    $contacts = new contact;
 ?>

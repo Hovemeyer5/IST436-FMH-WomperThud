@@ -36,8 +36,7 @@
 				$q .= " ORDER BY $orderby";
 			if ($limit != null)
 				$q .= " LIMIT $limit";
-			
-			// issue query
+			$q;			// issue query
 			$this->queryResult = mysqli_query($this->conn, $q);			
 			//query doesn't run
 			if (!$this->queryResult)
