@@ -79,11 +79,11 @@
 			//get contact
 			$contact = $db->select("contact", "*", "c_id=$c_id");
 			
-			//get all things that each contact could have multiple of and sort by type
-			$addresses = $db->select("address, type", "a_id, a_street, a_city, a_state, a_zip, a_type, t_name", "a_type = t_id and c_id=".$c_id, "a_type");
-			$emails = $db->select("email, type", "e_id, e_email, e_type, t_name", "e_type = t_id and c_id=".$c_id, "e_type");
-			$urls = $db->select("url, type", "url_id, url_url, url_type, t_name", "url_type = t_id and c_id=".$c_id, "url_type");
-			$phones = $db->select("phone, type", "p_id, p_number, p_type, t_name", "p_type = t_id and c_id=".$c_id, "url_type");
+			//get all things that each contact could have multiple of and sort by item type
+			$addresses = $db->select("address, itype", "a_id, a_street, a_city, a_state, a_zip, a_type, t_name", "a_type = t_id and c_id=".$c_id, "a_type");
+			$emails = $db->select("email, itype", "e_id, e_email, e_type, t_name", "e_type = t_id and c_id=".$c_id, "e_type");
+			$urls = $db->select("url, itype", "url_id, url_url, url_type, t_name", "url_type = t_id and c_id=".$c_id, "url_type");
+			$phones = $db->select("phone, itype", "p_id, p_number, p_type, t_name", "p_type = t_id and c_id=".$c_id, "url_type");
 			
 			//add extraneious fields to contact array
 			$contact[0]['adds'] = $addresses;
@@ -110,7 +110,7 @@
 			foreach($members as $key=>$member)
 			{
 				//get first prioritized address
-				$members[$key]['address'] = $db->select("address, type", "a_id, a_street, a_city, a_state, a_zip, t_name", "a_type = t_id and c_id=".$member['c_id'], "a_type", 1)[0];
+				$members[$key]['address'] = $db->select("address, itype", "a_id, a_street, a_city, a_state, a_zip, t_name", "a_type = t_id and c_id=".$member['c_id'], "a_type", 1)[0];
 			}
 			//add members to group array
 			$group[0]['members'] = $members;
