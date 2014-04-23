@@ -27,17 +27,32 @@
               <li class="active"><a href="index.php">Home</a></li>
               </ul>
             <h3 class="text-muted"><?=$fname.$mi.$lname?></h3>
+            <!--This is for the image-->
+            <div>
+            <?php
+			/*didn't include height or width as I think Rebecca has the database set to resize? The alt tag is the contact's name*/
+				echo "<img src='$image' alt='$fname.$mi.$lname'>";
+			?>
+            <!--end of the image div-->
+            </div>
           </div>
           <?php
           //this begins the body output
           ?>
+          <!--This begins the address div-->
+          <div>
           Address:
             <?php
                 //echo $address;
             ?>
+            </div>
+            <!--The above div ends the address div-->
             <br/>
             <hr>
  <!--the different categories of numbers-->
+ 
+ <!--This begins the phone numbers div-->
+ <div>
 Phone numbers<br/>
 <?php
 /*
@@ -53,19 +68,21 @@ else if ($phoneNum2 != 'null')
 	//echo "Phone number [secondary]: $phoneNum2";
 }
 ?>
+</div>
+<!--The above div ends the phone numbers div-->
 <hr>
+ <!--This begins the email div-->
+<div>
 Email addresses<br/>
 <?php
 /*I don't know if we want to do this or not, but make the emails go open in a mail client?*/
 //echo "Primary <a href='mailto:SESSION.START.andrewmfoster@gmail.com'> $email </a>";
 ?>
-          
-          //end of the body
-          ?>
-          
-    
+</div>
+<!--The above div ends the email div-->
+
           <div class="footer">
-            <p>&copy; Company 2014</p>
+            <p>&copy; FMH 2014</p>
           </div>
         <?
       }
