@@ -1,0 +1,19 @@
+.border{
+  border: 1px solid black;
+}
+.contactImage{
+  width: 50%;
+  margin: auto;
+}
+
+.imageContainer{
+  width: 75%;
+  margin: auto;
+}
+.imageContainer img{
+  width: 100%;
+  margin: auto;
+}
+.editHeader{
+  margin-bottom: 10px;
+}
