@@ -8,20 +8,32 @@
       }
       else
       {
-          $theID = $_GET[id];
+          //$theID = $_GET[id];
           //this can be removed for when we go live
           $theID = 1;
           $something = $contacts->getContactById($theID);
+		  print_r($something);
           $fname = $something[c_fname];
 		$mi = $something[c_mi];
 		$lname = $something[c_lname];
+		$street = $something[a_street];
+        $city = $something[a_city];
+        $state = $something[a_state];
+        //$zip = $something[add][0][a_zip];
+        $type = $something[a_type];
+        //[t_name] => Home
 		//$address = $something[c_address];
 		//$phoneNumber = $something[c_phoneNum];
 		//$email1 = $something[c_email];
-		$image = $something[c_image]
+		$image = $something[c_image];
+		//1012+Rustling+Road+South+Charleston,WV
+		$mapAddress = $street."+".$city.",".$state;
+		//$mapAddress = "1012+Rustling+Road+South+Charleston,WV";
 		
         ?>
-
+			<?php 
+			echo "<title>$fname.$mi.$lname</title>";
+			?>
           <div class="header">
             <ul class="nav nav-pills pull-right">
               <li class="active"><a href="index.php">Home</a></li>
@@ -39,21 +51,13 @@
           <?php
           //this begins the body output
           ?>
-          <!--This begins the address div-->
-          <div>
-          Address:
-            <?php
-                //echo $address;
-            ?>
-            </div>
-            <!--The above div ends the address div-->
             <br/>
             <hr>
  <!--the different categories of numbers-->
  
  <!--This begins the phone numbers div-->
  <div>
-Phone numbers<br/>
+Phone numbers:<br/>
 <?php
 /*
 Purpose: To check if there is a null secondary number, and if not, display it
@@ -73,13 +77,27 @@ else if ($phoneNum2 != 'null')
 <hr>
  <!--This begins the email div-->
 <div>
-Email addresses<br/>
+Email addresses:<br/>
 <?php
 /*I don't know if we want to do this or not, but make the emails go open in a mail client?*/
 //echo "Primary <a href='mailto:SESSION.START.andrewmfoster@gmail.com'> $email </a>";
+echo $street.$city.$state;
 ?>
 </div>
 <!--The above div ends the email div-->
+<!--This begins the address div-->
+          <div>
+          Address:<br/>
+            <?php
+			//echos out an image of the user's location
+			
+			echo "Home: $mapAddress <br/>";	
+			echo "<img border='0'  alt='' src='http://maps.googleapis.com/maps/api/staticmap?key=AIzaSyA-d9p8eSmHByP_0emwNUJzgSaYal9abA4&center=$mapAddress&zoom=18
+&size=400x400&markers=color:blue%7C$mapAddress&sensor=false,' />";
+                //echo $address;
+            ?>
+            </div>
+            <!--The above div ends the address div-->
 
           <div class="footer">
             <p>&copy; FMH 2014</p>
