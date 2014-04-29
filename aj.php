@@ -120,6 +120,16 @@
 	{
 
 	}
+	elseif($action == "searchInput")
+	{	
+		global $contacts;
+		$allContactsGroup = $contacts->getContactsGroups($_POST['search']);
+		foreach($allContactsGroup as $key=>$value)
+			{
+				echo "<ul><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></ul>";	
+			}
+
+	}
 	else{
 	    echo "Uh Oh! Something went wrong. Please return to the <a href='index.php'>home page</a>..";
 	}
