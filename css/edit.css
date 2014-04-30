@@ -17,3 +17,7 @@
 .editHeader{
   margin-bottom: 10px;
 }
+.imageBox{
+  width: 50%;
+  margin: auto;
+}

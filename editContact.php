@@ -16,36 +16,33 @@
               <li><a id="save" href="#">Save</a></li>
             </ul> 
           </div>
-    
-			<div class="row-fluid  contactImage">
+          <script>
+            $(document).ready(function () {
+              
+              $('#save').click(function(){
+                  $("#editContact").submit();
+              });
+              
+            });
+          </script>
+			<div class="row-fluid">
 			    <div>
 				<div class="border imageBox">
 				    <div class="imageContainer">
-					<img src="i/dummy_image.jpg" />
+					<img src="../_upload/photo 1.JPG" />
 				    </div>
 				</div>
-				<input name="lname" type="file" class="form-control">
-			    </div>
-			</div>
-			<div class="row-fluid contactName">
-			    <div>
-				<form>
+                              </div>
+                            <form id="editContact" method="POST" action='aj.php?action=addContact' enctype="multipart/form-data">
+				<input id="imageUpload" name="image" type="file" class="form-control">
 					<div>
 					    <div>
 						<span>Name:</span>
-						<button>+</button>
 					    </div>
 						<input name="fname" type="text" class="form-control" placeholder="First Name" required autofocus>
 						<input name="mi" type="text" class="form-control" placeholder="Middle Initial">
 						<input name="lname" type="text" class="form-control" placeholder="Last Name">
 					</div>
-				</form>
-			    </div>
-			</div>
-			<div class="row-fluid contactDetails">
-				<div>
-				    <form>
-					<div>
 					    <div>
 						<span>Phone:</span>
 						<button id="addPhone">+</button>
@@ -54,7 +51,6 @@
 						<input name="phone" type="text" class="form-control" placeholder="Phone">
 					    </div>
 					</div>
-					<form>
 					    <div>
 						<span>Address:</span>
 						<button id="addAddress">+</button>
@@ -65,7 +61,6 @@
 						<input name="state" type="text" class="form-control" placeholder="State">
 						<input name="zipcode" type="text" class="form-control" placeholder="Zipcode">
 					    </div>
-					</form>
 					<div>
 					    <div>
 						<span>Email:</span>

@@ -6,8 +6,7 @@
 	if(isset($_POST['action']))
 	    $action = $_POST['action'];
 	else
-	    $action = $_GET['action'];
-	
+	    $action = trim($_GET['action']);
 	if($action == "lgn" && isset($_POST['username']) && isset($_POST['psw']))
 	{
 	    $loginFailed ="";
@@ -92,12 +91,55 @@
 	    else
 		echo "false";
 	}
+	elseif($action == "iUpload")
+	{
+	}
 	elseif($action == "getContacts")
 	{
 
 	}
-	elseif($action == "addContact")
+	elseif($action == 'addContact')
 	{
+
+	    // make a note of the directory that will recieve the uploaded file 
+	    $uploadsDirectory = "_upload/";
+	    
+
+	    // upload errors 
+	    $errors = array(1 => 'php.ini max file size exceeded', 
+			    2 => 'html form max file size exceeded', 
+			    3 => 'file upload was only partial', 
+			    4 => 'no file was attached'); 
+		
+	    // check for PHP's built-in uploading errors 
+	    ($_FILES[$fieldname]['error'] == 0) 
+		or error($errors[$_FILES['image']['error']]); 
+		     
+	    // check that their is a file 
+	    @is_uploaded_file($_FILES['image']['tmp_name']) 
+		or error('not an HTTP upload'); 
+		       
+	    // make its own name
+	    $now =time(); 
+	    while(file_exists($uploadFilename = $now.'-'.preg_replace('/\s+/', '', $_FILES['image']['name']))) 
+	    { 
+		$now++; 
+	    }
+	    
+	    echo ".............................." . $uploadFilename . "..........................<br />";
+
+	    
+	    if ($_FILES["image"]["error"] > 0) {
+	      echo "Error: " . $_FILES["image"]["error"] . "<br>";
+	    } else {
+	      echo "Upload: " . $_FILES["image"]["name"] . "<br>";
+	      echo "Type: " . $_FILES["image"]["type"] . "<br>";
+	      echo "Size: " . ($_FILES["image"]["size"] / 1024) . " kB<br>";
+	      echo "Stored in: " . $_FILES["image"]["tmp_name"];
+	    }
+	
+	    move_uploaded_file($_FILES["image"]["tmp_name"], "c:\\inetpub\\wwwroot\\ist436\\fmh\\_upload\\" . $uploadFilename);
+	      echo "Stored in: " . "c:\\inetpub\\wwwroot\\ist436\\fmh\\_upload\\" . $uploadFilename;
 
 	}
 	elseif($action == "deleteContact")
