@@ -16,15 +16,7 @@
               <li><a id="save" href="#">Save</a></li>
             </ul> 
           </div>
-          <script>
-            $(document).ready(function () {
-              
-              $('#save').click(function(){
-                  $("#editContact").submit();
-              });
-              
-            });
-          </script>
+
 			<div class="row-fluid">
 			    <div>
 				<div class=" imageBox">
@@ -56,8 +48,8 @@
                                                     <option value="3">Other</option>
                                                   </select>
                                                     <input name="phone1" type="text" class="form-control" placeholder="Phone">
-                                                    <button data-type="phone" class="remove">Remove</button>
-                                                    <input class="hide" name="phoneID1" value="">
+                                                    <button data-count="1" data-type="phone" class="remove">Remove</button>
+                                                    <input class="hide" name="phoneID1" value="2">
                                               </div>
                                             </div>
 					</div>
@@ -76,6 +68,7 @@
                                                   <input name="city1" type="text" class="form-control" placeholder="City">
                                                   <input name="state1" type="text" class="form-control" placeholder="State">
                                                   <input name="zipcode1" type="text" class="form-control" placeholder="Zipcode">
+						  <button data-count="1" data-type="address" class="remove">Remove</button>
                                                   <input class="hide" name="addID1" value="">
                                               </div>
                                             </div>
@@ -92,6 +85,7 @@
                                                     <option value="3">Other</option>
                                                   </select>
                                                   <input name="email1" type="text" class="form-control" placeholder="Email">
+						  <button data-count="1" data-type="email" class="remove">Remove</button>
                                                   <input class="hide" name="emailID1" value="">
                                               </div>
                                             </div>
@@ -110,6 +104,7 @@
                                                     <option value="3">Other</option>
                                                   </select>
                                                   <input name="url1" type="text" class="form-control" placeholder="URL">
+						  <button data-count="1" data-type="url" class="remove">Remove</button>
                                                   <input class="hide" name="urlID1" value="">
                                               </div>
                                             </div>
