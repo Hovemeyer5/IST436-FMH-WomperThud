@@ -8,16 +8,34 @@
 
 .imageContainer{
   width: 75%;
+  max-height: 20em;
   margin: auto;
 }
 .imageContainer img{
-  width: 100%;
+  max-width: 90%;
   margin: auto;
+  max-height: 19.75em;
+  display: block;
 }
 .editHeader{
   margin-bottom: 10px;
 }
 .imageBox{
-  width: 50%;
+  width: 100%;
   margin: auto;
+  margin-top: 1em;
+  clear: both;
+  max-height: 20em;
+}
+.formLabel span{
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.formLabel{
+  padding: 1em 0px 0.5em 0px;
+}
+#imageUpload{
+  max-width: 75%;
+  margin: auto;
+  margin-top: 1em;
 }

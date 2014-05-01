@@ -100,47 +100,45 @@
 	}
 	elseif($action == 'addContact')
 	{
-
-	    // make a note of the directory that will recieve the uploaded file 
-	    $uploadsDirectory = "_upload/";
-	    
-
-	    // upload errors 
-	    $errors = array(1 => 'php.ini max file size exceeded', 
-			    2 => 'html form max file size exceeded', 
-			    3 => 'file upload was only partial', 
-			    4 => 'no file was attached'); 
+	    $fname = trim($_POST['fname']);
+	    //first name is required
+	    if($fname == "")
+	    {
+		header("location:" . 'index.php?e=1');
+	    }
+	    else
+	    {
+		$mi = trim($_POST['mi']);
+		$lname = trim($_POST['fname']);
+		$phoneNumbers = [];
 		
-	    // check for PHP's built-in uploading errors 
-	    ($_FILES[$fieldname]['error'] == 0) 
-		or error($errors[$_FILES['image']['error']]); 
-		     
-	    // check that their is a file 
-	    @is_uploaded_file($_FILES['image']['tmp_name']) 
-		or error('not an HTTP upload'); 
-		       
-	    // make its own name
-	    $now =time(); 
-	    while(file_exists($uploadFilename = $now.'-'.preg_replace('/\s+/', '', $_FILES['image']['name']))) 
-	    { 
-		$now++; 
+		print_r($_POST);
+		foreach($_POST as $key=>$entry)
+		{
+		    if (strpos($key,'phoneType') !== false) {
+			$num = ltrim ($key , 'phoneType');
+			echo $num;
+			$tempPhone[0] = $entry;
+			$tempPhone[1] = $_POST['phone' . $num];
+			array_push($phoneNumbers, $tempPhone);
+		    }
+		}
+		echo "<pre>";
+		print_r($phoneNumbers);
+		echo "</pre>";
+		////Now you can start creating a contact.
+		//$uploadsDirectory = "..\\_upload\\";
+		//    
+		////make its own name
+		//$now =time(); 
+		//$uploadFilename = $now.'-'.preg_replace('/\s+/', '', $_FILES['image']['name']);
+		//
+		////Move the uplaoded file to destination
+		//move_uploaded_file($_FILES["image"]["tmp_name"], $uploadsDirectory . $uploadFilename);
+		//
 	    }
-	    
-	    echo ".............................." . $uploadFilename . "..........................<br />";
 
 	    
-	    if ($_FILES["image"]["error"] > 0) {
-	      echo "Error: " . $_FILES["image"]["error"] . "<br>";
-	    } else {
-	      echo "Upload: " . $_FILES["image"]["name"] . "<br>";
-	      echo "Type: " . $_FILES["image"]["type"] . "<br>";
-	      echo "Size: " . ($_FILES["image"]["size"] / 1024) . " kB<br>";
-	      echo "Stored in: " . $_FILES["image"]["tmp_name"];
-	    }
-	
-	    move_uploaded_file($_FILES["image"]["tmp_name"], "c:\\inetpub\\wwwroot\\ist436\\fmh\\_upload\\" . $uploadFilename);
-	      echo "Stored in: " . "c:\\inetpub\\wwwroot\\ist436\\fmh\\_upload\\" . $uploadFilename;
-
 	}
 	elseif($action == "deleteContact")
 	{
