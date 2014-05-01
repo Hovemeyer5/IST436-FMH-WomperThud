@@ -43,7 +43,6 @@
 						if($value[name] < $smallestValue)
 						{
 							$smallestKey = $key;
-							echo $key;
 						}
 					}
 					array_push($allN, array_slice($all, $smallestKey, 1)[0]);
