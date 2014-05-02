@@ -166,7 +166,7 @@
 		$allContactsGroup = $contacts->getContactsGroups($_POST['search']);
 		foreach($allContactsGroup as $key=>$value)
 			{
-				echo "<ul><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></ul>";	
+				echo "<ul><li><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></li></ul>";	
 			}
 
 	}
