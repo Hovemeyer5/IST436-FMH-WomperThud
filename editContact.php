@@ -36,76 +36,79 @@
 						<input name="mi" type="text" class="form-control" placeholder="Middle Initial">
 						<input name="lname" type="text" class="form-control" placeholder="Last Name">
 					</div>
-					    <div class="formLabel">
-						<span >Phone:</span>
-						<button data-type="phone" class="add" id="addPhone">+</button>
-					    </div>
-                                            <div data-count="1" id="phones">
+                                        <div>
+                                            <div class="formLabel">
+                                                <span >Phone:</span>
+                                                <button data-type="phone" class="add" id="addPhone">+</button>
+                                            </div>
+                                            <div id="phones">
                                               <div class="detailBox">
-                                                  <select name="phoneType1">
+                                                  <select name="phoneType[]">
                                                     <option value="1">Home</option>
                                                     <option value="2">Work</option>
                                                     <option value="3">Other</option>
                                                   </select>
-                                                    <input name="phone1" type="text" class="form-control" placeholder="Phone">
-                                                    <button data-count="1" data-type="phone" class="remove">Remove</button>
-                                                    <input class="hide" name="phoneID1" value="2">
+                                                    <input name="phone[]" type="text" class="form-control" placeholder="Phone">
+                                                    <button data-type="phone" class="remove" onclick='removeDetailBox(this, event)'>Remove</button>
+                                                    <input class="hide" name="phoneID[]" value="">
                                               </div>
                                             </div>
-					</div>
+                                        </div>
+                                        <div>
 					    <div class="formLabel">
 						<span >Address:</span>
 						<button data-type="address" class="add" id="addAddress">+</button>
 					    </div>
-                                            <div data-count="1" id="addresss">
+                                            <div id="addresss">
                                               <div class="detailBox">
-                                                  <select name="addType1">
+                                                  <select name="addType[]">
                                                     <option value="1">Home</option>
                                                     <option value="2">Work</option>
                                                     <option value="3">Other</option>
                                                   </select>
-                                                  <input name="street1" type="text" class="form-control" placeholder="Street">
-                                                  <input name="city1" type="text" class="form-control" placeholder="City">
-                                                  <input name="state1" type="text" class="form-control" placeholder="State">
-                                                  <input name="zipcode1" type="text" class="form-control" placeholder="Zipcode">
-						  <button data-count="1" data-type="address" class="remove">Remove</button>
-                                                  <input class="hide" name="addID1" value="">
+                                                  <input name="street[]" type="text" class="form-control" placeholder="Street">
+                                                  <input name="city[]" type="text" class="form-control" placeholder="City">
+                                                  <input name="state[]" type="text" class="form-control" placeholder="State">
+                                                  <input name="zipcode[]" type="text" class="form-control" placeholder="Zipcode">
+						  <button onclick='removeDetailBox(this, event)'>Remove</button>
+                                                  <input class="hide" name="addID[]" value="">
                                               </div>
                                             </div>
+                                        </div>
 					<div>
 					    <div class="formLabel">
 						<span >Email:</span>
 						<button data-type="email" class="add" id="addEmail">+</button>
 					    </div>
-                                            <div data-count="1" id="emails">
+                                            <div id="emails">
                                               <div class="detailBox">
-                                                  <select name="emailType1">
+                                                  <select name="emailType[]">
                                                     <option value="1">Home</option>
                                                     <option value="2">Work</option>
                                                     <option value="3">Other</option>
                                                   </select>
-                                                  <input name="email1" type="text" class="form-control" placeholder="Email">
-						  <button data-count="1" data-type="email" class="remove">Remove</button>
-                                                  <input class="hide" name="emailID1" value="">
+                                                  <input name="email[]" type="text" class="form-control" placeholder="Email">
+						  <button onclick='removeDetailBox(this, event)'>Remove</button>
+                                                  <input class="hide" name="emailID[]" value="">
                                               </div>
                                             </div>
 					</div>
 					
 					<div>
-					     <div class="formLabel">
+					    <div class="formLabel">
 						<span >URL:</span>
 						<button data-type="url" class="add" id="addURL">+</button>
 					    </div>
-                                            <div data-count="1" id="urls">
+                                            <div  id="urls">
                                               <div class="detailBox">
-                                                  <select name="urlType1">
+                                                  <select name="urlType[]">
                                                     <option value="1">Home</option>
                                                     <option value="2">Work</option>
                                                     <option value="3">Other</option>
                                                   </select>
-                                                  <input name="url1" type="text" class="form-control" placeholder="URL">
-						  <button data-count="1" data-type="url" class="remove">Remove</button>
-                                                  <input class="hide" name="urlID1" value="">
+                                                  <input name="url[]" type="text" class="form-control" placeholder="URL">
+						  <button onclick='removeDetailBox(this, event)'>Remove</button>
+                                                  <input class="hide" name="urlID[]" value="">
                                               </div>
                                             </div>
 					</div>

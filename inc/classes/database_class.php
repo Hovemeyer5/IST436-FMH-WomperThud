@@ -50,32 +50,6 @@
 			}
 			return $results;
 		}
-		public function ugh()
-		{
-			$results = "";
-			$q = "ALTER TABLE data_points MODIFY dp_long decimal(15,5)";
-			$this->queryResult = mysqli_query($this->conn, $q);
-			$q = "describe data_points";
-			$this->queryResult = mysqli_query($this->conn, $q);
-			while($row = mysqli_fetch_array($this->queryResult))
-			{				$results[] = $row;
-			}			echo "<pre>";
-			print_r($results);			echo "</pre>";
-			$results = "";
-			$q = "describe history_entry";
-			$this->queryResult = mysqli_query($this->conn, $q);
-			while($row = mysqli_fetch_array($this->queryResult))
-			{				$results[] = $row;
-			}			echo "<pre>";
-			
-			print_r($results);
-			
-			echo "</pre>";			$results = "";
-			$q = "describe images";
-			$this->queryResult = mysqli_query($this->conn, $q);
-			while($row = mysqli_fetch_array($this->queryResult))
-			{				$results[] = $row;
-			}			echo "<pre>";			print_r($results);			echo "</pre>";			$results = "";			$q = "describe links";			$this->queryResult = mysqli_query($this->conn, $q);			while($row = mysqli_fetch_array($this->queryResult))			{				$results[] = $row;			}			echo "<pre>";			print_r($results);			echo "</pre>";			$results = "";			$q = "describe ratings";			$this->queryResult = mysqli_query($this->conn, $q);			while($row = mysqli_fetch_array($this->queryResult))			{				$results[] = $row;			}			echo "<pre>";			print_r($results);			echo "</pre>";			$results = "";			$q = "describe users";			$this->queryResult = mysqli_query($this->conn, $q);			while($row = mysqli_fetch_array($this->queryResult))			{				$results[] = $row;			}			echo "<pre>";			print_r($results);			echo "</pre>";		}
 		//insert data into the database - Insert Statement
 		public function insert($table, $values, $columns=null)
 		{
