@@ -55,7 +55,7 @@
 					}
 					
 				}
-				echo $newstreet;
+				//echo $newstreet;
 				//debug purposes only
 				echo "<br/>";
 				
