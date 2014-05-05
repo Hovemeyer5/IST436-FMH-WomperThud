@@ -16,15 +16,16 @@
           $fname = $something[c_fname];
 		$mi = $something[c_mi];
 		$lname = $something[c_lname];
-		$street = $something[a_street];
-        $city = $something[a_city];
-        $state = $something[a_state];
-        //$zip = $something[add][0][a_zip];
+		$street = $something[adds][0][a_street];
+        $city = $something[adds][0][a_city];
+        $state = $something[adds][0][a_state];
+		//$zip = $something[add][0][a_zip];
+        $zip = $something[adds][0][a_zip];
         $type = $something[a_type];
         //[t_name] => Home
 		//$address = $something[c_address];
-		//$phoneNumber = $something[c_phoneNum];
-		//$email1 = $something[c_email];
+		$phoneNumber = $something[phones][0][p_number];
+		$email1 = $something[emails][0][e_email];
 		$image = $something[c_image];
 		//1012+Rustling+Road+South+Charleston,WV
 		$mapAddress = $street."+".$city.",".$state;
@@ -62,9 +63,9 @@ Phone numbers:<br/>
 /*
 Purpose: To check if there is a null secondary number, and if not, display it
 */
-if ($phoneNum2 == 'null' || $phoneNum2 == "\n")
+if ($phoneNumber != 'null' || $phoneNumber != "\n")
 {
-	//echo "Primary: $phoneNumber";
+	echo "Primary: <a href='tel:$phoneNumber'>$phoneNumber</a>";
 }
 else if ($phoneNum2 != 'null')
 {
@@ -80,8 +81,7 @@ else if ($phoneNum2 != 'null')
 Email addresses:<br/>
 <?php
 /*I don't know if we want to do this or not, but make the emails go open in a mail client?*/
-//echo "Primary <a href='mailto:SESSION.START.andrewmfoster@gmail.com'> $email </a>";
-echo $street.$city.$state;
+echo "Primary: <a href='mailto:$email1'> $email1 </a>";
 ?>
 </div>
 <!--The above div ends the email div-->
@@ -91,7 +91,12 @@ echo $street.$city.$state;
             <?php
 			//echos out an image of the user's location
 			
-			echo "Home: $mapAddress <br/>";	
+			echo "Home: ";	
+			echo $street . ", ";
+        	echo $city . ", ";
+        	echo $state . ". ";
+        	echo $zip;
+			echo "<br/>";
 			echo "<img border='0'  alt='' src='http://maps.googleapis.com/maps/api/staticmap?key=AIzaSyA-d9p8eSmHByP_0emwNUJzgSaYal9abA4&center=$mapAddress&zoom=18
 &size=400x400&markers=color:blue%7C$mapAddress&sensor=false,' />";
                 //echo $address;
