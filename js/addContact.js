@@ -7,26 +7,26 @@ detailBoxes['email'] = "<div class='detailBox'><select name='emailType[]'><optio
 detailBoxes['url'] = "<div class='detailBox'><select name='urlType[]'><option value='1'>Home</option><option value='2'>Work</option><option value='3'>Other</option></select><input name='url[]' type='text' class='form-control' placeholder='URL'><button onclick='removeDetailBox(this, event)'>Remove</button><input class='hide' name='urlID[]' value=''></div>";
 
 $(document).ready(function(){
-					$('.add').click(function(e){
-								e.preventDefault();
-								var typeToAdd = $(this).data('type');
-								$("#" + typeToAdd + "s").append(detailBoxes[typeToAdd]);
-                        });
-                        $('#save').click(function(){
-								$("#editContact").submit();
-                        });
+     $('.add').click(function(e){
+          e.preventDefault();
+          var typeToAdd = $(this).data('type');
+          $("#" + typeToAdd + "s").append(detailBoxes[typeToAdd]);
+    });
+    $('#save').click(function(){
+          $("#editContact").submit();
+    });
 
 });
 
 function removeDetailBox(thisDetailBox, e) {
-                        e.preventDefault();
-                        if ($(thisDetailBox).next().val() == "") {
-                                                //code
-                                                $(thisDetailBox).parent().remove();
-                        }
-                        else
-                        {
-                           $(thisDetailBox).next().attr("value", $(thisDetailBox).next().val() + "X");
-                           $(thisDetailBox).parent().hide();
-                        }
+     e.preventDefault();
+     if ($(thisDetailBox).next().val() == "") {
+                             //code
+                             $(thisDetailBox).parent().remove();
+     }
+     else
+     {
+        $(thisDetailBox).next().attr("value", $(thisDetailBox).next().val() + "X");
+        $(thisDetailBox).parent().hide();
+     }
 }

@@ -91,13 +91,6 @@
 	    else
 		echo "false";
 	}
-	elseif($action == "iUpload")
-	{
-	}
-	elseif($action == "getContacts")
-	{
-
-	}
 	elseif($action == 'addContact')
 	{
 	    $fname = trim($_POST['fname']);
@@ -402,7 +395,12 @@
 	}
 	elseif($action == "deleteContact")
 	{
-
+	    if($_POST['ContactID'] != "" and is_numeric($_POST['ContactID']))
+	    {
+		$cID = $_POST['ContactID'];
+		$contacts->deleteContact($cID);
+	    }
+	    header("location:" . 'index.php');
 	}
 	elseif($action == "addGroup")
 	{
@@ -412,12 +410,14 @@
 	{
 
 	}
-	elseif($action == "addContactToGroup")
-	{
-
-	}
-	elseif($action == "deleteContactFromGroup")
-	{
+	elseif($action == "selectSearch")
+	{	
+		global $contacts;
+		$allContactsGroup = $contacts->getContactsGroups($_POST['search']);
+		foreach($allContactsGroup as $key=>$value)
+			{
+				echo "<li><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></li>";	
+			}
 
 	}
 	elseif($action == "searchInput")

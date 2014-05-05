@@ -63,6 +63,22 @@
 			
 			
 		}
+		//get contacts and groups all or with search parameters
+		public function getContacts($search = "")
+		{
+			//use database
+			global $db;
+			//define variables
+			$contacts = "";
+			
+			//make search parameter all upper case
+			//get contacts matching search parameter
+			$contacts = $db->select("contact", "c_id, CONCAT_WS(' ', c_fname, c_mi, c_lname) as name", "CONCAT_WS(' ', c_fname, c_lname) LIKE '%".$search."%' or
+					   CONCAT_WS(' ', c_fname, c_mi, c_lname) LIKE '%".$search."%' or
+					   CONCAT_WS('. ', CONCAT_WS(' ', c_fname, c_mi), c_lname) LIKE '%".$search."%'", "name Desc");
+			
+			return $contacts;	
+		}
 		//function to get a contact by it's id
 		public function getContactById($c_id)
 		{
@@ -93,6 +109,36 @@
 			//return contact
 			return $contact[0];	
 		}
+		//function to get check if valid contact id
+		public function isValidContactId($c_id)
+		{
+			//use database
+			global $db;
+
+			//get contact
+			$contact = $db->select("contact", "c_fname", "c_id=$c_id");
+			
+			//return contact
+			if($contact[0]['c_fname'] != "")
+				return true;
+			else
+				return false;
+		}
+		//function to get check if valid contact id
+		public function isValidGroupId($id)
+		{
+			//use database
+			global $db;
+
+			//get contact
+			$group = $db->select("groups", "g_name", "g_id=$id");
+			
+			//return contact
+			if($group[0]['g_name'] != "")
+				return true;
+			else
+				return false;
+		}
 		//function to get a group by ID with it's members Id's
 		public function getGroupById($g_id)
 		{
@@ -122,9 +168,14 @@
 			
 		}
 		//delete a contact
-		public function deleteContact()
+		public function deleteContact($cID)
 		{
-
+			//delete All things related to this contact.
+			$db->delete('address', 'c_id = '. $cID );
+			$db->delete('email', 'c_id = '. $cID );
+			$db->delete('phone', 'c_id = '. $cID );
+			$db->delete('url', 'c_id = '. $cID );
+			$db->delete('contact', 'c_id = '. $cID );
 		}
 		//add a group
 		public function addGroup($table, $columns = '*', $where = null, $orderby = null, $limit = null)
