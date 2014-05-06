@@ -8,9 +8,8 @@
       }
       else
       {
-          //$theID = $_GET[id];
-          //this can be removed for when we go live
-          $theID = 1;
+          $theID = $_GET[id];
+		  //$theID = 1;
           $something = $contacts->getContactById($theID);
 		  print_r($something);
           $fname = $something[c_fname];
@@ -27,9 +26,7 @@
 		$phoneNumber = $something[phones][0][p_number];
 		$email1 = $something[emails][0][e_email];
 		$image = $something[c_image];
-		//1012+Rustling+Road+South+Charleston,WV
 		$mapAddress = $street."+".$city.",".$state;
-		//$mapAddress = "1012+Rustling+Road+South+Charleston,WV";
 		
         ?>
 			<?php 
@@ -60,9 +57,51 @@
  <div>
 Phone numbers:<br/>
 <?php
-/*
-Purpose: To check if there is a null secondary number, and if not, display it
-*/
+
+foreach($something[phones][$theID][p_number] as $phone)
+{
+	$phoneType = $something[phones][0][p_id];
+	echo "Home: <a href='tel:$phoneNumber'>$phoneNumber</a>";
+	
+}
+for ($a = 0; $a < 2; $a++)
+{
+	$phoneType = $something[phones][0][p_id];
+	switch($a)
+	{
+		case 1:
+		{
+			echo "Home: <a href='tel:$phoneNumber'>$phoneNumber</a>";
+			break;
+		}
+		case 2:
+		{
+			if ($phoneNumber != "\n")
+			{
+				echo "Work: <a href='tel:$phoneNumber'>$phoneNumber</a>";
+			}
+			else
+			{
+				//go drink a beer, for there naught be else to do here
+			}
+			break;
+		}
+		case 3:
+		{
+			if ($phoneNumber != "\n")
+			{
+				echo "Other: <a href='tel:$phoneNumber'>$phoneNumber</a>";
+			}
+			else
+			{
+				//go drink a beer, for there naught be else to do here
+			}
+			break;
+		}
+	}
+}
+
+
 if ($phoneNumber != 'null' || $phoneNumber != "\n")
 {
 	echo "Primary: <a href='tel:$phoneNumber'>$phoneNumber</a>";
