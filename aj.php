@@ -404,20 +404,76 @@
 	}
 	elseif($action == "addGroup")
 	{
+	    $gname = trim($_POST['gname']);
+	    //first name is required
+	    if($gname == "")
+	    {
+		header("location:" . 'editGroup.php?e=1');
+	    }
+	    else
+	    {
+		$thisGroup = "";
+		
+		//check if update vrs. add.
+		if($_POST['GroupID'] != "")
+		{
+		    //update contact
+		    $thisGroup = $_POST['GroupID'];  
+		}
+		else
+		{
+		    //add group into database.
+		    $thisGroup = $db->insert('groups', "'".$gname."', ".$_SESSION['user'], "g_name, g_u_id");
+		}
+	    }
+	    //Now we have a group - Add the members if there were any...
+	    if(isset($_POST['memberID']))
+	    {
+		foreach($_POST['memberID'] as $member)
+		{
 
+		    if(strpos($member, 'M') == false)
+		    {
+			//not already a member - so add 
+			$db->insert('contact_group', $member. "," .$thisGroup, 'c_id, g_id');
+		    }
+		    else
+		    {
+			//it is already a member - it may be marked for removal
+			if(strpos($member, 'X' != false))
+			{
+			    $member = rtrim ($member , 'X');
+			    $member = ltrim ($member , 'M');
+			    if($member != "") //make sure there is an id sent
+			    {
+				//marked for deletion - so delete
+				$db->delete('contact_group', 'c_id = '. $member. 'AND g_id = '. $thisGroup);
+			    }
+			}
+		    }
+		}
+	    }
+	    header("location:" . 'viewGroup.php?id='. $thisGroup);
 	}
 	elseif($action == "deleteGroup")
 	{
-
+	    if($_POST['GroupID'] != "" and is_numeric($_POST['GroupID']))
+	    {
+		$contacts->deleteGroup($_POST['GroupID']);
+	    }
+	    header("location:" . 'index.php');
 	}
 	elseif($action == "selectSearch")
 	{	
 		global $contacts;
 		$allContactsGroup = $contacts->getContactsGroups($_POST['search']);
+		
 		foreach($allContactsGroup as $key=>$value)
-			{
-				echo "<li><a href='viewContact.php?id=".$value[c_id]."'>".$value[name]."</a></li>";	
-			}
+		{
+		    ?>
+		    <li onclick="addMember(this)"><span><?=$value[name]?></span><input class="hide" name="memberID[]" value="<?=$value[c_id]?>"></li>
+		    <?
+		}
 
 	}
 	elseif($action == "searchInput")

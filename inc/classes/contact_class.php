@@ -12,12 +12,12 @@
 			$all = "";
 			//make search parameter all upper case
 			//get contacts matching search parameter
-			$contacts = $db->select("contact", "c_id, CONCAT_WS(' ', c_fname, c_mi, c_lname) as name", "CONCAT_WS(' ', c_fname, c_lname) LIKE '%".$search."%' or
+			$contacts = $db->select("contact", "c_id, CONCAT_WS(' ', c_fname, c_mi, c_lname) as name", "c_u_id = ". $_SESSION['user'] ." AND CONCAT_WS(' ', c_fname, c_lname) LIKE '%".$search."%' or
 					   CONCAT_WS(' ', c_fname, c_mi, c_lname) LIKE '%".$search."%' or
 					   CONCAT_WS('. ', CONCAT_WS(' ', c_fname, c_mi), c_lname) LIKE '%".$search."%'", "name Desc");
 			
 			//get groups matching search parameter
-			$groups = $db->select("groups", "g_id, g_name as name", "UPPER(g_name) LIKE '%".$search."%'", "name ASC");
+			$groups = $db->select("groups", "g_id, g_name as name", "g_u_id = ". $_SESSION['user'] . " AND UPPER(g_name) LIKE '%".$search."%'", "name ASC");
 			
 			//return an array of both
 			if($groups == "" and $contacts != "")
@@ -73,7 +73,7 @@
 			
 			//make search parameter all upper case
 			//get contacts matching search parameter
-			$contacts = $db->select("contact", "c_id, CONCAT_WS(' ', c_fname, c_mi, c_lname) as name", "CONCAT_WS(' ', c_fname, c_lname) LIKE '%".$search."%' or
+			$contacts = $db->select("contact", "c_id, CONCAT_WS(' ', c_fname, c_mi, c_lname) as name", "c_u_id = ". $_SESSION['user']. " AND CONCAT_WS(' ', c_fname, c_lname) LIKE '%".$search."%' or
 					   CONCAT_WS(' ', c_fname, c_mi, c_lname) LIKE '%".$search."%' or
 					   CONCAT_WS('. ', CONCAT_WS(' ', c_fname, c_mi), c_lname) LIKE '%".$search."%'", "name Desc");
 			
@@ -170,22 +170,23 @@
 		//delete a contact
 		public function deleteContact($cID)
 		{
-			//delete All things related to this contact.
+			//delete all things related to this contact.
 			$db->delete('address', 'c_id = '. $cID );
 			$db->delete('email', 'c_id = '. $cID );
 			$db->delete('phone', 'c_id = '. $cID );
 			$db->delete('url', 'c_id = '. $cID );
+			$db->delete('contact_group', 'c_id = '. $cID);
+			
+			//delete contact
 			$db->delete('contact', 'c_id = '. $cID );
-		}
-		//add a group
-		public function addGroup($table, $columns = '*', $where = null, $orderby = null, $limit = null)
-		{
-
+			
 		}
 		//delete group
-		public function deleteGroup()
+		public function deleteGroup($gID)
 		{
-
+			//delte group members then group.
+			$db->delete('contact_group', 'g_id = '. $gID);
+			$db->delete('group', 'g_id = '. $gID);
 		}
 		//add contact to group
 		public function addContactToGroup($table, $values, $columns=null)

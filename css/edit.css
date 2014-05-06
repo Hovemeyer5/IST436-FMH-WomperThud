@@ -42,3 +42,10 @@
 .eG{
   clear: both;
 }
+#alreadyThere{
+  height: .8em;
+}
+#alreadyThere span{
+  color: red;
+  display: none;
+}

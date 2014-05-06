@@ -13,9 +13,6 @@
         {
           //update  - get the contacts info to populate form fields
           $gDetails = $contacts->getGroupById($_GET['id']);
-          echo "<pre>";
-          print_r($gDetails);
-          echo "</pre>";
           //populate form fields
             ?>
                 <div class="header editHeader">
@@ -29,23 +26,25 @@
                 <div class="row-fluid eG">
                     <form id="editGroup" method="POST" action='aj.php?action=addGroup' enctype="multipart/form-data">
                                 <div>
-                                    <input class="hide" name="ContactID" value="<?=$gDetails['g_id']?>">
+                                    <input class="hide" name="GroupID" value="<?=$gDetails['g_id']?>">
                                     <div class="formLabel">
                                         <span >Name:</span>
                                     </div>
-                                    <input name="fname" type="text" class="form-control" placeholder="First Name" required autofocus value="<?=($gDetails['g_name'] != "" ? $gDetails['g_name'] : "")?>">
+                                    <input name="gname" type="text" class="form-control" placeholder="First Name" required autofocus value="<?=($gDetails['g_name'] != "" ? $gDetails['g_name'] : "")?>">
                                 </div>
                                 <div>
                                     <div class="formLabel">
                                         <span >Members:</span>
+                                        
                                     </div>
                                     <div id="members">
+                                      <p>Select a member below.</p>
                                       <ul>
                                         <?
                                         foreach($gDetails['members'] as $member)
                                         {
                                         ?>
-                                            <li><span><?=$member['c_name']?></span><input class="hide" name="memberID[]" value="<?=$member['c_id']?>"><span class="glyphicon glyphicon-remove"></span></li>
+                                            <li><span><?=$member['c_name']?></span><input class="hide" name="memberID[]" value="<?="M".$member['c_id']?>"><span onclick='removeMember(this)' class="glyphicon glyphicon-remove"></span></li>
                                          <?
                                         }
                                         ?>
@@ -77,7 +76,7 @@
             </div>
              <div class="row-fluid eG">
                     <form id="editGroup" method="POST" action='aj.php?action=addGroup' enctype="multipart/form-data">
-                          <input class="hide" name="groupID" value="">
+                          <input class="hide" name="GroupID" value="">
                           <div>
                               <div class="formLabel">
                                   <span >Name:</span>
@@ -89,8 +88,9 @@
                                   <span >Members:</span>
                               </div>
                               <div id="members">
+                                <p>Select a member below.</p>
                                 <ul>
-                                      <li><span>Select A Member Below</span><input class="hide" name="memberID[]" value=""></li>
+                                  
                                 </ul>
                               </div>
                           </div>
@@ -105,6 +105,7 @@
             </div>
             <div>
               <p>Search for a member and then tap/click their name to add them to your group's member list.</p>
+              <p id="alreadyThere"><span>Sorry. You already added that contact to this group.</span></p>
             </div>
 	    <input id="search" class="form-control" type="text" size="50" placeholder="Search"/>
 		<div id="contactListing">
