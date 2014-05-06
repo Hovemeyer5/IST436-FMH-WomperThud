@@ -8,24 +8,22 @@
       }
       else
       {
-          //$theID = $_GET[id];
-          //this can be removed for when we go live
-          $theID = 1;
+          $theID = $_GET[id];
           $something = $contacts->getContactById($theID);
 		  print_r($something);
           $fname = $something[c_fname];
 		$mi = $something[c_mi];
 		$lname = $something[c_lname];
-		$street = $something[adds][0][a_street];
-        $city = $something[adds][0][a_city];
-        $state = $something[adds][0][a_state];
+		$street = $something[adds][$theID][a_street];
+        $city = $something[adds][$theID][a_city];
+        $state = $something[adds][$theID][a_state];
 		//$zip = $something[add][0][a_zip];
-        $zip = $something[adds][0][a_zip];
+        $zip = $something[adds][$theID][a_zip];
         $type = $something[a_type];
         //[t_name] => Home
 		//$address = $something[c_address];
-		$phoneNumber = $something[phones][0][p_number];
-		$email1 = $something[emails][0][e_email];
+		$phoneNumber = $something[phones][$theID][p_number];
+		$email1 = $something[emails][$theID][e_email];
 		$image = $something[c_image];
 		//1012+Rustling+Road+South+Charleston,WV
 		$mapAddress = $street."+".$city.",".$state;
@@ -60,9 +58,14 @@
  <div>
 Phone numbers:<br/>
 <?php
-/*
-Purpose: To check if there is a null secondary number, and if not, display it
-*/
+
+foreach($something[phones][$theID][p_number] as $phone)
+{
+	$phoneType = $something[phones][$theID][p_id];
+	echo "Home: <a href='tel:$phoneNumber'>$phoneNumber</a>";
+}
+
+
 if ($phoneNumber != 'null' || $phoneNumber != "\n")
 {
 	echo "Primary: <a href='tel:$phoneNumber'>$phoneNumber</a>";
