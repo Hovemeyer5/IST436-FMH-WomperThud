@@ -10,11 +10,8 @@
       {
           //this is supposed to get group member information [question mark]
           //ask Rebecca and have her correct me as I'm more than likely doing something wrong
-          $theID = 1;
+          $theID = $_GET[id];
           $gname = $contacts->getGroupById($theID);
-		  echo "<pre>";
-		  print_r($gname);
-		  echo "</pre>";
         ?>
           <div class="header">
             <ul class="nav nav-pills pull-right">
